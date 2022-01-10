@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="container">
+  <div>
+    <h1>게시판</h1>
+    <p>
+      <a href="/border/write">글쓰기</a>
+    </p>
+  </div>
+  <div>
+    <table>
+      <thead>
+      <tr>
+        <th>번호 </th>
+        <th>제목 </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="border : ${border}">
+        <td>
+<!--           <a th:href="/border/read?num=${border.num}"><span th:text="${border.num}"></span></a>-->
+          <a th:href="@{/border/read(num=${border.num})}"><span th:text="${border.num}"></span></a>
+        </td>
+        <td>
+          <a th:href="@{/border/read(num=${border.num})}"><span th:text="${border.title}"></span></a>
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div> <!-- /container -->
+</body>
+</html>

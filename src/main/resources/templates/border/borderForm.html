@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="container">
+
+    <form action="/border/write" method="post">
+        <!--컨트롤러의 /member/join 맵핑으로 보냄 -->
+        <div class="form-group">
+            <label for="title">제목</label>
+            <input type="text" id="title" name="title">
+            <br>
+            <label for="contents">내용</label>
+            <textarea type="note" id="contents" name="contents" rows="5"
+                      cols="20" wrap="soft"></textarea>
+        </div>
+        <button type="submit">등록</button>
+    </form>
+
+</div> <!-- /container -->
+</body>
+</html>

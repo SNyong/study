@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="container">
+
+<!--  <form action="/member/search" method="post">-->
+<!--    &lt;!&ndash;컨트롤러의 /member/join 맵핑으로 보냄 &ndash;&gt;-->
+<!--    <div class="form-group">-->
+<!--      <label for="id">아이디로 검색하기</label>-->
+<!--      <input type="text" id="id" name="id" placeholder="아이디">-->
+<!--    </div>-->
+<!--    <button type="submit">검색하기</button>-->
+<!--  </form>-->
+
+
+  <div>
+    <table>
+      <thead>
+      <tr>
+        <th>번호 </th>
+        <th>아이디 </th>
+        <th>비밀번호 </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="member : ${members}">
+        <td th:text="${member.num}"></td>
+        <td th:text="${member.id}"></td>
+        <td th:text="${member.pw}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+<br><br>
+  <a href="/">홈으로</a>
+</div> <!-- /container -->
+</body>
+</html>
