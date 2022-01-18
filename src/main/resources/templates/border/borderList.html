@@ -17,15 +17,13 @@
       </tr>
       </thead>
       <tbody>
-      <tr th:each="border : ${border}">
+      <tr th:each="border : ${border}"> <!--반복 출력-->
         <td>
-<!--           <a th:href="/border/read?num=${border.num}"><span th:text="${border.num}"></span></a>-->
-          <a th:href="@{/border/read(num=${border.num})}"><span th:text="${border.num}"></span></a>
+          <a th:href="@{/border/read/{num}(num=${border.num})}"><span th:text="${border.num}"></span></a>
         </td>
         <td>
-          <a th:href="@{/border/read(num=${border.num})}"><span th:text="${border.title}"></span></a>
+          <a th:href="@{/border/read/{num}(num=${border.num})}"><span th:text="${border.title}"></span></a>
         </td>
-
       </tr>
       </tbody>
     </table>

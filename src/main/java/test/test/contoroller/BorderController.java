@@ -1,13 +1,11 @@
 package test.test.contoroller;
 
 
+import jdk.jfr.Frequency;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import test.test.domain.Border;
 import test.test.service.BorderService;
@@ -32,26 +30,28 @@ public class BorderController {
 
         List<Border> border = borderService.ListBorder();
         model.addAttribute("border", border);
+        System.out.println(border);
+
         return "border/borderList";
     }
 
     //게시판 검색
-    @RequestMapping("/border")
-    public String SearchBorder(@RequestParam String title) {
-
-        List<Border> border = borderService.ListBorder(title);
-
-        Map<String,Object> map= new HashMap<>();
-
-        ModelAndView mav = new ModelAndView();
-
-        map.put("border", border);
-        map.put("title", title);
-
-        mav.addObject("border", border);
-        mav.setViewName("border/borderList");
-        return "mav";
-    }
+//    @RequestMapping("/border")
+//    public String SearchBorder(@RequestParam String title) {
+//
+//        List<Border> border = borderService.ListBorder(title);
+//
+//        Map<String,Object> map= new HashMap<>();
+//
+//        ModelAndView mav = new ModelAndView();
+//
+//        map.put("border", border);
+//        map.put("title", title);
+//
+//        mav.addObject("border", border);
+//        mav.setViewName("border/borderList");
+//        return "mav";
+//    }
 
 
     //게시판 폼으로
@@ -75,25 +75,25 @@ public class BorderController {
         return "redirect:/";
     }
 
-    @PostMapping("/border/read")
-    public String read(Border border){
+    //    @PostMapping("/border/read")
+//        @RequestParam(value="/border/read", method = )
 
-        Optional<Border> read = borderService.read(border.getNum());
+    @GetMapping("/border/read/{num}")
+    public String read(@PathVariable(name = "num") int num, Model model) {
 
-        border.setContents(border.getContents());
+        Border border = borderService.read(num).get();
+        model.addAttribute("border", border);
 
-        Map<String,Object> map= new HashMap<>();
+        return "border/borderContent";
 
-        ModelAndView mav = new ModelAndView();
-
-        map.put("read", read);
-        map.put("border", border);
-
-        mav.addObject("border", border);
-        mav.setViewName("border/borderList");
-
-
-        return "border/read";
     }
+
+//    @GetMapping("/border/read/")
+//    public void Read(@RequestParam("num") int num, Model model) throws Exception{
+//        System.out.println(num + "2번");
+//        Border read = borderService.read(num).get();
+//        model.addAttribute("read", read);
+//    }
+
 
 }

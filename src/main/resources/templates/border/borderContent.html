@@ -14,13 +14,15 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="border : ${border}">
-                <td th:text="${border.title}">
-                </td>
-                <td th:text="${border.contents}">
-                </td>
+                <tr>
+                    <td th:text="${border.title}">
+                    </td>
+                </tr>
+                <tr>
+                    <td th:text="${border.contents}">
+                    </td>
+                </tr>
 
-            </tr>
             </tbody>
         </table>
     </div>
