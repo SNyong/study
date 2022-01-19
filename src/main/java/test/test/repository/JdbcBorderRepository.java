@@ -18,9 +18,10 @@ public class JdbcBorderRepository implements BorderRepository{
     }
 
 
+    //게시글 쓰기
     @Override
     public Border write(Border border) {
-        String sql = null;
+        String sql;
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -50,36 +51,11 @@ public class JdbcBorderRepository implements BorderRepository{
         return border;
     }
 
-    @Override
-    public List<Border> borderList() {
-        String sql = "select * from border";
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-
-        try{
-            conn = getConnection();
-            pstmt = conn.prepareStatement(sql);
-            rs = pstmt.executeQuery();
-            List<Border> borders = new ArrayList<>();
-            while(rs.next()){
-                Border border = new Border();
-                border.setNum(rs.getInt("num"));
-                border.setTitle(rs.getString("title"));
-                borders.add(border);
-            }
-            return borders;
-        }catch(SQLException e){
-            throw new IllegalStateException(e);
-        }finally{
-            close(conn,pstmt,rs);
-        }
-    }
 
     //게시글 읽기
     @Override
     public Optional<Border> borderRead(int num) {
-        String sql = null;
+        String sql;
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -107,17 +83,23 @@ public class JdbcBorderRepository implements BorderRepository{
         return Optional.empty();
     }
 
+    //게시글 목록
     @Override
     public List<Border> borderList(String title) {
-        String sql = "select * from border where = ?";
+        String sql;
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-
         try{
             conn = getConnection();
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, title);
+            if(title != null) {
+                sql = "select * from border where title = ?";
+                pstmt = conn.prepareStatement(sql);
+                pstmt.setString(1, title);
+            }else{
+               sql = "select * from border";
+               pstmt = conn.prepareStatement(sql);
+            }
             rs = pstmt.executeQuery();
             List<Border> borders = new ArrayList<>();
             while(rs.next()){
