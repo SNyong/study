@@ -44,7 +44,7 @@ public class BorderController {
     }
     
     //글쓰기
-    @PostMapping("/border/write")
+//    @PostMapping("/border/write")
     public String save(BorderForm form){
         Border border = new Border();
         border.setNum(form.getNum());

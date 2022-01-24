@@ -17,8 +17,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc' /*Jdbc 셋팅*/
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa' /*jpa 셋팅*/
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4' /*MyBatis 셋팅*/
 	runtimeOnly 'com.h2database:h2'
 
 }
